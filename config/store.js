@@ -5,7 +5,7 @@
    ========================================================================== */
 window.STORE = {
   brand: "BOUKI",
-  tagline: "HORS DU MOULE.",
+  tagline: "TECH DOFF.",
   dropName: "DROP 001",
   siteUrl: "", // ex. "https://bouki.vercel.app" — optionnel, utile pour le partage
 

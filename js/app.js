@@ -61,11 +61,14 @@
   $$("[data-drop-name]").forEach(function (n) { n.textContent = STORE.dropName; });
   $$("[data-drop-number]").forEach(function (n) { n.textContent = String(STORE.dropName).replace(/\D/g, "") || n.textContent; });
   $("#year").textContent = new Date().getFullYear();
-  document.title = "BOUKI — Streetwear sénégalais · Hors du moule.";
+  document.title = "BOUKI — Streetwear, création & expériences digitales · TECH DOFF.";
   $$("[data-wa]").forEach(function (a) {
-    var msg = a.getAttribute("data-wa") === "community"
+    var purpose = a.getAttribute("data-wa");
+    var msg = purpose === "community"
       ? "Bonjour BOUKI, je souhaite rejoindre la communauté et être prévenu des prochains drops."
-      : "Bonjour BOUKI, je souhaite avoir des informations sur le drop.";
+      : purpose === "services"
+        ? "Bonjour BOUKI, je souhaite discuter d’un projet créatif/digital. Je suis intéressé(e) par vos services d’identité de marque, d’expériences digitales et interactives, de supports de communication ou de stratégie marketing innovante. Pouvez-vous m’orienter ?"
+        : "Bonjour BOUKI, je souhaite avoir des informations sur le drop.";
     a.setAttribute("href", waLink(msg));
   });
   if (!STORE.pricesConfirmed) { $("#priceNote").hidden = false; $("#cartPriceNote").hidden = false; }

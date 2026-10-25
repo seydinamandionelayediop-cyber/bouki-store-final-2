@@ -6,8 +6,8 @@
                   à remplacer avant publication, puis config/store.js →
                   pricesConfirmed: true.
    • images     : une ou plusieurs photos. Chemins relatifs à la racine du site.
-                  Les visuels bouki-0X.svg sont PROVISOIRES : remplace-les par
-                  tes vraies photos (bouki-01.jpg, etc.) et mets à jour le chemin.
+                  Les JPG actuels sont des visuels conceptuels générés ; remplace-les
+                  par tes photos réelles avant le lancement public.
    • sizes      : liste de tailles à choisir. [] = pas de choix de taille.
    • colors     : liste { name, hex }. Une seule couleur = sélectionnée d'office.
    • status     : "available" (en stock) | "soldout" (épuisé) | "soon" (bientôt)

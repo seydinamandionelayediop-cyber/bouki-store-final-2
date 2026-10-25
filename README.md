@@ -1,6 +1,6 @@
-# BOUKI — Boutique en ligne · « HORS DU MOULE. »
+# BOUKI — Studio créatif & streetwear · « TECH DOFF. »
 
-Boutique streetwear sénégalaise : site **statique** (HTML / CSS / JavaScript), **sans build, sans base de données, sans abonnement**. Sept produits, panier, et commande finalisée par **WhatsApp**. Prêt pour **GitHub + Vercel** (gratuit).
+BOUKI est un univers créatif sénégalais : streetwear, identité de marque, expériences digitales et interactives, supports de communication et stratégie marketing innovante. Signature : **TECH DOFF.** Site **statique** (HTML / CSS / JavaScript), sans base de données ni build obligatoire, avec sept produits, panier et contact WhatsApp. Préparé pour GitHub + Vercel ; vérifie les conditions de l’hébergement selon ton usage commercial.
 
 ---
 
@@ -36,11 +36,11 @@ Un seul fichier : **`data/products.js`**. Il contient exactement 7 emplacements,
 Pour un nouveau drop : modifie les 7 blocs (ne supprime pas la structure), change `dropName` dans `config/store.js`, remplace les photos. Si tu veux plusieurs photos d'un produit : `images: ["assets/products/bouki-01.jpg", "assets/products/bouki-01-dos.jpg"]`.
 
 ## D. Remplacer les images sans casser les liens
-Les sept visuels `assets/products/bouki-01.svg` … `bouki-07.svg` sont des **visuels provisoires** (silhouettes marquées « remplace-moi »). Ce ne sont pas des photos réelles.
-1. Prépare tes photos en **portrait 4:5**, environ **1000 × 1250 px**, JPG ou WebP, < 250 Ko chacune.
-2. Nomme-les `bouki-01.jpg` … `bouki-07.jpg` et mets-les dans `assets/products/`.
-3. Dans `data/products.js`, change `images: ["assets/products/bouki-01.svg"]` en `images: ["assets/products/bouki-01.jpg"]`.
-4. Si une image est introuvable, le site affiche automatiquement une image de secours (pas de trou, pas d'erreur).
+Les fichiers `assets/products/bouki-01.jpg` à `bouki-07.jpg` sont des **visuels conceptuels générés** pour le Drop 001. Ils définissent une direction artistique cohérente, mais ne garantissent pas le rendu réel des articles fabriqués.
+1. Prépare tes photos finales en **portrait 4:5**, environ **1000 × 1250 px**, JPG ou WebP, idéalement sous 250 Ko chacune.
+2. Remplace les JPG existants dans `assets/products/` en conservant exactement les mêmes noms.
+3. Tu n'as alors pas besoin de modifier `data/products.js`. Si tu préfères d'autres noms, mets à jour le champ `images` du produit concerné.
+4. Si une image est introuvable, le site affiche automatiquement une image de secours.
 
 ## E. Modifier les prix en FCFA
 Dans `data/products.js`, champ `price`. ⚠ **Les prix actuels sont des prix d'exemple.** Tant que `pricesConfirmed` vaut `false` dans `config/store.js`, le site affiche « prix indicatifs ». Une fois tes prix validés : `pricesConfirmed: true`.
@@ -51,7 +51,9 @@ Frais de livraison : `deliveryFee` dans `config/store.js` (ex. `2000`). Sans val
 
 ## G. Modifier couleurs et textes
 - **Couleurs et polices :** début de `css/style.css` (bloc `:root`) : `--ink` (noir), `--cream` (crème), `--gold` (jaune doré)…
-- **Textes principaux :** `index.html` (hero, manifeste, concepts, étapes).
+- **Textes principaux :** `index.html` (hero, manifeste, section Studio créatif, BOUKI Tech, concepts, étapes).
+- **Signature :** `config/store.js` → `tagline` (actuellement `TECH DOFF.`).
+- **Services créatifs :** section `#services` dans `index.html`; adapte les offres à tes services réellement disponibles.
 - **Infos pratiques (taille, livraison, retours, CGV, confidentialité) :** `config/store.js` → `info`.
 - **Logo :** `assets/img/bouki-emblem.png` (fond transparent, pour fonds clairs) et `bouki-emblem-light.png` (pour fonds sombres). Le logo a été extrait de ton `bouki-emblem.jpg` : c'est un **PNG** (pas un fichier vectoriel). Si tu as le fichier vectoriel (SVG/AI), remplace-le : le rendu sera plus net en très grand.
 
@@ -145,6 +147,7 @@ bouki-store-final/
 
 ## Visuels et BOUKI TECH
 
+- La direction artistique utilise désormais un en-tête noir, un hero sombre et cinématographique et des accents jaune doré, en cohérence avec la maquette de référence.
 - Les sept images produits sont des visuels conceptuels générés pour la maquette ; elles ne garantissent pas le rendu réel des articles fabriqués.
 - `assets/img/bouki-hero.jpg` : visuel éditorial principal.
 - `assets/img/bouki-ar-editorial.jpg` : illustration conceptuelle du volet AR.
