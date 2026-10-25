@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>BOUKI — Streetwear sénégalais · Hors du moule.</title>
+  <meta name="description" content="BOUKI, streetwear sénégalais inspiré de Dakar. Découvre le drop, choisis ta pièce et commande simplement sur WhatsApp. Hors du moule.">
+  <meta name="theme-color" content="#101010">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_SN">
+  <meta property="og:title" content="BOUKI — Hors du moule.">
+  <meta property="og:description" content="Streetwear sénégalais inspiré de Dakar. Commande sur WhatsApp.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <div class="announce" role="note"><span>BOUKI® — STREETWEAR SÉNÉGALAIS</span><span class="dot">✳</span><span>HORS DU MOULE.</span><span class="dot">✳</span><span data-drop-name>DROP 001</span></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="BOUKI — accueil">
+      <img src="assets/img/bouki-emblem.png" alt="" width="40" height="40">
+      <span class="wordmark">BOUKI<sup>®</sup></span>
+    </a>
+    <nav id="mainNav" class="main-nav" aria-label="Navigation principale">
+      <a href="#collection">Collection</a>
+      <a href="#univers">Univers</a>
+      <a href="#commander">Commander</a>
+      <a href="#bouki-tech">BOUKI Tech</a>
+      <a href="#infos">Infos</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" id="cartBtn" class="cart-btn" aria-haspopup="dialog">
+        <span>PANIER</span><b id="cartCount" aria-live="polite" aria-label="0 article">0</b>
+      </button>
+      <button type="button" id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="mainNav" aria-label="Ouvrir le menu"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. HERO -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse" aria-hidden="true"></span> Streetwear sénégalais · <span data-drop-name>DROP 001</span></p>
+        <h1 id="heroTitle">HORS DU<br><em>MOULE.</em></h1>
+        <p class="lead">BOUKI, c’est l’énergie de Dakar portée à ta manière. Des pièces au caractère affirmé pour celles et ceux qui tracent leur propre voie. Pas besoin de suivre le mouvement quand tu peux le créer.</p>
+        <a class="btn btn-dark" href="#collection">Découvrir la collection <span aria-hidden="true">↘</span></a>
+        <ul class="hero-facts" aria-label="L'essentiel">
+          <li>7 pièces</li><li>Esprit Dakar</li><li>Commande sur WhatsApp</li>
+        </ul>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <span class="sticker">DROP<b data-drop-number>001</b>LIMITÉ</span>
+        <img src="assets/img/bouki-hero.jpg" alt="Campagne BOUKI : T-shirt noir à graphisme couronné dans un décor urbain au coucher du soleil" width="1600" height="1067" fetchpriority="high">
+        <small>BOUKI STUDIO <span>DKR · 2026</span></small>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">
+      <span>HORS DU MOULE ✳ FAIT POUR BOUGER ✳ DAKAR EN MOUVEMENT ✳ NDANK NDANK ✳</span>
+      <span>HORS DU MOULE ✳ FAIT POUR BOUGER ✳ DAKAR EN MOUVEMENT ✳ NDANK NDANK ✳</span>
+    </div></div>
+
+    <!-- 2. COLLECTION -->
+    <section id="collection" class="section" aria-labelledby="collTitle">
+      <div class="section-head">
+        <div><p class="eyebrow">Le drop · <span data-drop-name>DROP 001</span></p><h2 id="collTitle">LES <em>PIÈCES.</em></h2></div>
+        <p>Sept pièces. Une seule énergie.<br>Choisis la tienne, on s’occupe du reste sur WhatsApp.</p>
+      </div>
+      <p id="priceNote" class="price-note" hidden>Prix indicatifs : les prix définitifs sont confirmés sur WhatsApp avant toute commande.</p>
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      <noscript><p class="notice">Cette boutique a besoin de JavaScript pour afficher les produits et le panier. Tu peux aussi commander directement en nous écrivant sur WhatsApp.</p></noscript>
+    </section>
+
+
+    <!-- 3. BOUKI TECH -->
+    <section id="bouki-tech" class="tech-section" aria-labelledby="techTitle">
+      <div class="tech-intro">
+        <p class="eyebrow light">Mode · Culture · Technologie</p>
+        <h2 id="techTitle">WEAR IT.<br><em>SCAN IT.</em><br>EXPERIENCE IT.</h2>
+        <p>Chaque pièce BOUKI ouvre une porte vers son univers numérique. Le premier drop prépare des expériences autour de la réalité augmentée, du NFC et des QR codes.</p>
+        <span class="tech-note">Le module AR est une expérience en développement ; la reconnaissance caméra réelle doit être activée et testée avant lancement.</span>
+      </div>
+      <div class="tech-visual"><img src="assets/img/bouki-ar-editorial.jpg" alt="Mise en scène conceptuelle : un téléphone révèle une hyène couronnée en réalité augmentée sur un T-shirt BOUKI" loading="lazy"><span class="tech-visual-label">BOUKI LAB · DROP 001</span></div>
+      <div class="tech-features">
+        <article class="tech-feature"><span class="tech-number">01 / AR</span><h3>Le graphisme prend vie.</h3><p>Scanne le visuel du vêtement pour découvrir une animation liée au design. L'expérience finale dépendra des cibles et animations validées.</p><a href="#collection" class="tech-link">Explorer les pièces ↗</a></article>
+        <article class="tech-feature"><span class="tech-number">02 / NFC</span><h3>Approche ton téléphone.</h3><p>Une étiquette NFC pourra ouvrir la page numérique du produit sur un téléphone compatible, sans application à installer.</p><a href="#infos" class="tech-link">Comment ça marche ↗</a></article>
+        <article class="tech-feature"><span class="tech-number">03 / QR</span><h3>Une porte d'entrée universelle.</h3><p>Le QR code imprimé sur l'étiquette ou le packaging mènera à la même page que le NFC, avec l'histoire de la pièce et les contenus associés.</p><a href="#collection" class="tech-link">Découvrir le drop ↗</a></article>
+      </div>
+    </section>
+
+    <!-- 4. UNIVERS CRÉATIF -->
+    <section id="univers" class="manifesto" aria-labelledby="uniTitle">
+      <p class="eyebrow light">Le manifeste · BOUKI®</p>
+      <h2 id="uniTitle">ON NE SUIT PAS<br>LE <em>MOUVEMENT.</em><br><span>ON LE CRÉE.</span></h2>
+      <p class="manifesto-copy">Une couronne pour l’attitude. Une hyène pour l’instinct. BOUKI célèbre celles et ceux qui assument leur différence, avec Dakar dans le cœur et le regard tourné vers le monde.</p>
+
+      <h3 class="concepts-title">Concepts artistiques</h3>
+      <p class="concepts-note">Pistes créatives de la marque, pas des produits en vente.</p>
+      <ul class="concepts">
+        <li><span class="num">01</span><h4>Hors du moule</h4><p>L’affirmation de la marque : sortir des cadres, assumer sa différence.</p></li>
+        <li><span class="num">02</span><h4>Ndank Ndank</h4><p>« Doucement, petit à petit » en wolof : l’art de construire avec patience et style.</p></li>
+        <li><span class="num">03</span><h4>Dakar en mouvement</h4><p>L’énergie d’une ville qui ne s’arrête jamais, transformée en graphisme.</p></li>
+      </ul>
+    </section>
+
+    <!-- 4. COMMENT COMMANDER -->
+    <section id="commander" class="section steps" aria-labelledby="howTitle">
+      <div class="steps-head"><p class="eyebrow">Comment commander</p><h2 id="howTitle">SIMPLE.<br><em>DIRECT.</em></h2></div>
+      <ol class="steps-list">
+        <li><b>01</b><div><h3>Choisis ta pièce</h3><p>Ouvre une pièce, sélectionne ta taille et ta couleur, puis ajoute-la au panier.</p></div></li>
+        <li><b>02</b><div><h3>Envoie ta commande sur WhatsApp</h3><p>Ton panier est converti en message prêt à envoyer. Tu relis, puis tu appuies sur « Envoyer » dans WhatsApp.</p></div></li>
+        <li><b>03</b><div><h3>On confirme avec toi</h3><p>Nous confirmons la disponibilité, la livraison et le paiement directement sur WhatsApp. Aucun paiement n’est demandé sur ce site.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- 5. COMMUNAUTÉ -->
+    <section class="community" aria-labelledby="commTitle">
+      <h2 id="commTitle">REJOINS LE <em>MOUVEMENT.</em></h2>
+      <p>Écris-nous sur WhatsApp pour rejoindre la communauté BOUKI et ne rien rater des prochains drops.</p>
+      <a class="btn btn-gold" data-wa="community" href="#" target="_blank" rel="noopener">Rejoindre sur WhatsApp <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <!-- 6. INFOS -->
+    <section id="infos" class="section" aria-labelledby="infoTitle">
+      <div class="section-head"><div><p class="eyebrow">À savoir</p><h2 id="infoTitle">LES <em>INFOS.</em></h2></div></div>
+      <div id="infoList" class="info-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#top" aria-label="BOUKI — haut de page">
+      <img src="assets/img/bouki-emblem-light.png" alt="" width="44" height="44"><span class="wordmark">BOUKI<sup>®</sup></span>
+    </a>
+    <p class="foot-sign">FAIT À DAKAR. PORTÉ PARTOUT.</p>
+    <ul class="foot-links">
+      <li><a data-wa="footer" href="#" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+      <li id="footSocials" class="contents"></li>
+    </ul>
+    <small>© <span id="year">2026</span> BOUKI STUDIO. Tous droits réservés.</small>
+  </footer>
+
+  <!-- FICHE PRODUIT -->
+  <dialog id="productDialog" class="modal" aria-labelledby="pdName">
+    <div class="modal-body" id="productBody"></div>
+  </dialog>
+
+  <!-- PANIER -->
+  <dialog id="cartDialog" class="drawer" aria-labelledby="cartTitle">
+    <div class="drawer-body">
+      <div class="drawer-head">
+        <h2 id="cartTitle">TON PANIER <span id="cartTitleCount">(0)</span></h2>
+        <button type="button" class="icon-btn" data-close aria-label="Fermer le panier">×</button>
+      </div>
+      <div class="drawer-scroll">
+        <div id="cartEmpty" class="cart-empty">
+          <p>Ton panier est encore vide.</p>
+          <a class="btn btn-dark" href="#collection" data-close>Explorer le drop <span aria-hidden="true">↘</span></a>
+        </div>
+        <ul id="cartLines" class="cart-lines"></ul>
+        <div id="cartSummary" hidden>
+          <dl class="totals">
+            <div><dt>Sous-total</dt><dd id="cartSubtotal">0 FCFA</dd></div>
+            <div><dt>Livraison</dt><dd id="cartDelivery">À confirmer</dd></div>
+            <div class="grand"><dt>Total estimé</dt><dd id="cartTotal">0 FCFA</dd></div>
+          </dl>
+          <p id="cartPriceNote" class="fine" hidden>Prix indicatifs, confirmés sur WhatsApp.</p>
+          <form id="checkoutForm" class="checkout" novalidate>
+            <p class="form-title">Tes informations <span>(facultatif)</span></p>
+            <label for="fName">Nom</label><input id="fName" name="name" type="text" autocomplete="name" maxlength="80">
+            <label for="fPhone">Téléphone</label><input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="Ex. 77 123 45 67" aria-describedby="phoneErr">
+            <p id="phoneErr" class="form-error" role="alert" hidden></p>
+            <label for="fZone">Adresse ou zone de livraison</label><input id="fZone" name="zone" type="text" autocomplete="street-address" maxlength="120" placeholder="Ex. Yoff, Dakar">
+            <label for="fNotes">Notes</label><textarea id="fNotes" name="notes" rows="2" maxlength="300" placeholder="Précision, horaire, autre demande…"></textarea>
+            <p class="fine">Aucun paiement en ligne. Ta commande n’est envoyée que lorsque tu appuies sur « Envoyer » dans WhatsApp.</p>
+            <button type="submit" class="btn btn-dark full">Commander sur WhatsApp <span aria-hidden="true">↗</span></button>
+            <button type="button" id="clearCart" class="link-btn">Vider le panier</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- RÉCAPITULATIF WHATSAPP (secours + information) -->
+  <dialog id="recapDialog" class="modal modal-sm" aria-labelledby="recapTitle">
+    <div class="modal-body pad">
+      <button type="button" class="icon-btn modal-x" data-close aria-label="Fermer">×</button>
+      <h2 id="recapTitle">TON RÉCAPITULATIF EST PRÊT</h2>
+      <p id="recapStatus" class="recap-status"></p>
+      <label for="recapText" class="sr">Récapitulatif de commande</label>
+      <textarea id="recapText" class="recap-text" rows="10" readonly></textarea>
+      <div class="recap-actions">
+        <a id="recapOpen" class="btn btn-dark" href="#" target="_blank" rel="noopener">Ouvrir WhatsApp <span aria-hidden="true">↗</span></a>
+        <button type="button" id="recapCopy" class="btn btn-line">Copier le récapitulatif</button>
+      </div>
+      <p id="recapCopied" class="fine" role="status"></p>
+      <p class="fine">Ton panier est conservé. Tu peux le modifier ou le vider à tout moment.</p>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="config/store.js"></script>
+  <script src="data/products.js"></script>
+  <script src="js/whatsapp.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

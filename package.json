@@ -1,0 +1,11 @@
+{
+  "name": "bouki-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Boutique BOUKI — site statique (HTML/CSS/JS), commande par WhatsApp.",
+  "scripts": {
+    "start": "npx --yes serve@14 . -l 3000",
+    "test": "node --test tests/unit.test.js"
+  },
+  "engines": { "node": ">=18" }
+}
