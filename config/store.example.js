@@ -32,8 +32,7 @@ window.STORE = {
   // Rubriques d'information. texte = null → message provisoire affiché.
   // ⚠ Remplace chaque null par ton vrai texte avant le lancement public.
   info: [
-    { id: "taille",    title: "Comment choisir ma taille ?",
-      text: "Écris-nous sur WhatsApp pour obtenir le guide des tailles du drop." },
+    { id: "commander", title: "Comment ça marche ?", text: "Choisis tes pièces, ajoute-les au panier puis envoie le récapitulatif sur WhatsApp." },
     { id: "livraison", title: "Livraison", text: null },
     { id: "retours",   title: "Retours et échanges", text: null },
     { id: "cgv",       title: "Conditions de vente", text: null },

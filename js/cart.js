@@ -11,15 +11,15 @@
     var items = []; // { id, size, color, qty }
 
     function find(id) { for (var i = 0; i < products.length; i++) if (products[i].id === id) return products[i]; return null; }
-    function keyOf(l) { return [l.id, l.size || "", l.color || ""].join("|"); }
+    function keyOf(l) { return [l.id, "", l.color || ""].join("|"); }
     function clamp(q) { q = Math.floor(Number(q)); if (!isFinite(q) || q < 1) return 1; return Math.min(q, maxQty); }
 
     /** Contrôle les options obligatoires. → { ok, error } */
     function validateSelection(product, sel) {
       if (!product) return { ok: false, error: "Produit introuvable." };
       if (product.status !== "available") return { ok: false, error: "Ce produit n'est pas disponible pour le moment." };
-      if (product.sizes && product.sizes.length && (!sel.size || product.sizes.indexOf(sel.size) < 0))
-        return { ok: false, error: "Choisis une taille." };
+      // BOUKI Drop 001 : les tailles ne sont plus sélectionnées sur le site.
+      // On ignore toute ancienne valeur de taille provenant du panier local.
       var names = (product.colors || []).map(function (c) { return c.name; });
       if (names.length && (!sel.color || names.indexOf(sel.color) < 0))
         return { ok: false, error: "Choisis une couleur." };
@@ -39,7 +39,7 @@
         raw.forEach(function (l) {
           var p = l && find(String(l.id));
           if (!p || !validateSelection(p, { size: l.size || "", color: l.color || "" }).ok) return; // ligne périmée : ignorée
-          var line = { id: p.id, size: l.size || "", color: l.color || "", qty: clamp(l.qty) };
+          var line = { id: p.id, size: "", color: l.color || "", qty: clamp(l.qty) };
           var ex = items.filter(function (x) { return keyOf(x) === keyOf(line); })[0];
           if (ex) ex.qty = clamp(ex.qty + line.qty); else items.push(line);
         });
@@ -49,7 +49,7 @@
     function add(id, sel, qty) {
       var p = find(id), v = validateSelection(p, sel || {});
       if (!v.ok) return v;
-      var line = { id: p.id, size: (sel && sel.size) || "", color: (sel && sel.color) || "", qty: clamp(qty || 1) };
+      var line = { id: p.id, size: "", color: (sel && sel.color) || "", qty: clamp(qty || 1) };
       var ex = items.filter(function (x) { return keyOf(x) === keyOf(line); })[0];
       if (ex) ex.qty = clamp(ex.qty + line.qty); else items.push(line);
       save();

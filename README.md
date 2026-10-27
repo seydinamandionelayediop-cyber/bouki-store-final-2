@@ -85,8 +85,8 @@ git push -u origin main
 
 ## K. Tester avant de publier
 1. Lance le site (étape B).
-2. Ouvre une pièce → clique « Ajouter au panier » **sans** choisir de taille : un message doit t'arrêter.
-3. Choisis une taille, ajoute, ouvre le panier, change les quantités, vérifie le total.
+2. Ouvre une pièce → clique « CHOISIR D'AUTRES ARTICLES » : la pièce est ajoutée sans choix de taille et tu reviens à la collection.
+3. Ouvre le panier, change les quantités, vérifie le total.
 4. Remplis nom / téléphone / zone, clique « Commander sur WhatsApp » : **ne l'envoie pas** si tu ne veux pas ; vérifie que le message contient les bons produits, tailles, quantités et total, et que le numéro est `221787560327`.
 5. Teste aussi sur ton téléphone (même Wi-Fi : `http://IP-DE-TON-MAC:3000`, ou directement l'adresse Vercel).
 
@@ -104,7 +104,6 @@ Rien n'a été inventé. À renseigner dans `config/store.js` avant le lancement
 - [ ] **Confidentialité** : texte provisoire fourni, à faire relire
 - [ ] **Contact** : Instagram, TikTok, e-mail (`contact`), mentions légales / adresse si nécessaire
 - [ ] **Moyens de paiement acceptés** (à communiquer sur WhatsApp, aucun paiement n'est géré par le site)
-- [ ] Tailles : guide des tailles à envoyer sur demande
 Tant qu'une rubrique vaut `text: null`, le site affiche « Information bientôt disponible… ».
 
 ## M. Publier un nouveau drop
@@ -145,6 +144,20 @@ bouki-store-final/
 - Les « concepts artistiques » (Hors du moule, Ndank Ndank, Dakar en mouvement) sont présentés comme pistes créatives, pas comme produits en stock.
 
 
+## Modifications intégrées depuis le brief « Les changements pour le site »
+- Hero enrichi pour mieux raconter l’univers streetwear, Dakar, culture et digital.
+- Section boutique renommée « Merch Drops ».
+- Sélecteur de tailles retiré des 7 produits ; les tailles sont désactivées dans `data/products.js`.
+- Le bouton de la fiche produit devient « CHOISIR D’AUTRES ARTICLES » et ramène à la collection.
+- La commande directe depuis la fiche produit ouvre le panier et exige un numéro de téléphone.
+- Formulaire « Impression urgente » ajouté ; il prépare une demande de devis sur WhatsApp.
+- Concepts artistiques remplacés par une présentation OMNI Score™ / manifeste BOUKI.
+- Section « Comment commander » supprimée.
+- BOUKI Tech reformulé pour présenter les supports et expériences interactives (menus, QR, NFC, AR).
+- Informations pratiques enrichies avec l’univers BOUKI et les drops.
+
+**Lien du groupe WhatsApp :** renseigne `communityWhatsAppGroup` dans `config/store.js` avec le vrai lien d’invitation du groupe. Tant que ce champ est vide, le bouton rejoint une conversation WhatsApp directe avec BOUKI, pas un groupe.
+
 ## Visuels et BOUKI TECH
 
 - La direction artistique utilise désormais un en-tête noir, un hero sombre et cinématographique et des accents jaune doré, en cohérence avec la maquette de référence.
@@ -153,3 +166,12 @@ bouki-store-final/
 - `assets/img/bouki-ar-editorial.jpg` : illustration conceptuelle du volet AR.
 - La section BOUKI TECH présente le concept NFC/QR/AR, mais ne constitue pas une implémentation de reconnaissance AR. Le suivi réel du graphisme, les fichiers cibles, les animations, les puces NFC physiques et les QR finaux doivent encore être configurés et testés avant de les annoncer comme opérationnels.
 - Les prix du Drop 001 sont indicatifs : valider les prix, le stock et les tailles avant de passer `pricesConfirmed` à `true` dans `config/store.js`.
+
+
+## Version production (Univers, Impression urgente, Parcours)
+- Section « BOUKI, un univers qui connecte… » : 5 univers (Streetwear, Studio créatif, Solutions interactives, Impression, Formation & 3C).
+- Section `#impression` : visuel `assets/img/bouki-print-products.jpg`, formulaire validé champ par champ, message WhatsApp pré-rempli. Aucune confirmation n'est affichée tant que l'envoi n'est pas fait dans WhatsApp.
+- Section `#parcours` : THÉSEYDINA — discours, timeline sans dates inventées, citation, signature. Le visuel `assets/img/bouki-studio-illustration.jpg` est une illustration (légende explicite), pas une photo.
+- Le bouton produit « CHOISIR D'AUTRES ARTICLES » ajoute la pièce au panier puis ramène à la collection. Plus aucune taille n'est demandée ; les anciens paniers contenant une taille restent commandables.
+- **À renseigner** dans `config/store.js` : `communityWhatsAppGroup` (lien chat.whatsapp.com — sinon le bouton ouvre une conversation WhatsApp), `contact` (Instagram, TikTok, e-mail), `pricesConfirmed`, `deliveryFee`, textes « Retours » et « Conditions de vente ».
+- Tests : `npm test` (unitaires) et `node tests/e2e.cjs` (navigateur, 4 tailles d'écran).

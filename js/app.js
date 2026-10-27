@@ -66,10 +66,12 @@
     var purpose = a.getAttribute("data-wa");
     var msg = purpose === "community"
       ? "Bonjour BOUKI, je souhaite rejoindre la communauté et être prévenu des prochains drops."
+      : purpose === "studio"
+        ? "Bonjour BOUKI, je souhaite en savoir plus sur le studio créatif (identité visuelle, branding, packaging, direction artistique). Pouvez-vous m’orienter ?"
       : purpose === "services"
         ? "Bonjour BOUKI, je souhaite discuter d’un projet créatif/digital. Je suis intéressé(e) par vos services d’identité de marque, d’expériences digitales et interactives, de supports de communication ou de stratégie marketing innovante. Pouvez-vous m’orienter ?"
         : "Bonjour BOUKI, je souhaite avoir des informations sur le drop.";
-    a.setAttribute("href", waLink(msg));
+    a.setAttribute("href", purpose === "community" && STORE.communityWhatsAppGroup ? STORE.communityWhatsAppGroup : waLink(msg));
   });
   if (!STORE.pricesConfirmed) { $("#priceNote").hidden = false; $("#cartPriceNote").hidden = false; }
   (function socials() {
@@ -115,7 +117,7 @@
   }
 
   /* ---------- fiche produit ---------- */
-  var current = null; // { p, size, color, qty }
+  var current = null; // { p, color, qty }
   function chipGroup(name, legend, values, selected, onChange) {
     var set = h("fieldset", { class: "opt", id: "opt-" + name }, h("legend", {}, legend));
     var row = h("div", { class: "chips" });
@@ -132,7 +134,7 @@
 
   function openProduct(p, pushHash) {
     var sold = p.status !== "available";
-    current = { p: p, size: "", color: (p.colors && p.colors.length === 1) ? p.colors[0].name : "", qty: 1 };
+    current = { p: p, color: (p.colors && p.colors.length === 1) ? p.colors[0].name : "", qty: 1 };
     var body = $("#productBody"); body.textContent = "";
 
     var main = img(p.images[0], p.alt, "pd-main", false);
@@ -152,23 +154,29 @@
     minus.addEventListener("click", function () { setQty(current.qty - 1); });
     plus.addEventListener("click", function () { setQty(current.qty + 1); });
 
-    var addBtn = h("button", { type: "button", class: "btn btn-dark full", disabled: sold, text: sold ? "Indisponible" : "Ajouter au panier" });
+    var addBtn = h("button", { type: "button", class: "btn btn-dark full", disabled: sold, text: sold ? "Indisponible" : "CHOISIR D’AUTRES ARTICLES" });
     var waBtn = h("button", { type: "button", class: "btn btn-gold full", disabled: sold }, "Commander sur WhatsApp ", h("span", { "aria-hidden": "true", text: "↗" }));
 
     function check() {
-      var v = cart.validateSelection(p, { size: current.size, color: current.color });
-      if (!v.ok) { setErr(v.error); var f = $(!current.size && p.sizes.length ? "#opt-size input" : "#opt-color input"); if (f) f.focus(); }
+      var v = cart.validateSelection(p, { color: current.color });
+      if (!v.ok) { setErr(v.error); var f = $("#opt-color input"); if (f) f.focus(); }
       return v.ok;
     }
     addBtn.addEventListener("click", function () {
-      if (!check()) return;
-      cart.add(p.id, { size: current.size, color: current.color }, current.qty);
-      renderCart(); $("#productDialog").close(); clearHash();
-      toast(p.name + " ajouté au panier"); bump();
+      if (sold || !check()) return;
+      cart.add(p.id, { color: current.color }, current.qty);
+      renderCart(); bump();
+      $("#productDialog").close(); clearHash();
+      $("#collection").scrollIntoView({ behavior: "smooth", block: "start" });
+      toast(p.name + " ajouté au panier. Choisis d’autres articles.");
     });
     waBtn.addEventListener("click", function () {
       if (!check()) return;
-      launchWhatsApp([{ product: p, size: current.size, color: current.color, qty: current.qty }], {}, "productDialog");
+      cart.add(p.id, { color: current.color }, current.qty);
+      renderCart(); $("#productDialog").close(); clearHash();
+      openDialog($("#cartDialog"));
+      $("#fPhone").focus();
+      toast("Renseigne ton numéro pour continuer la commande");
     });
 
     var close = h("button", { type: "button", class: "icon-btn modal-x", "data-close": "", "aria-label": "Fermer la fiche produit", text: "×" });
@@ -179,7 +187,6 @@
       p.badge && BADGES[p.badge] ? h("p", {}, h("span", { class: "badge static", text: BADGES[p.badge] })) : null,
       h("p", { class: "pd-desc", text: p.description }),
       h("p", { class: "pd-status " + p.status }, h("i", { "aria-hidden": "true" }), STATUS[p.status] || "Indisponible"),
-      p.sizes && p.sizes.length ? chipGroup("size", "Taille", p.sizes.map(function (s) { return { value: s }; }), "", function (v) { current.size = v; }) : null,
       p.colors && p.colors.length ? chipGroup("color", "Couleur", p.colors.map(function (c) { return { value: c.name, hex: c.hex }; }), current.color, function (v) { current.color = v; }) : null,
       h("div", { class: "opt" }, h("span", { class: "legend", text: "Quantité" }), h("div", { class: "qty" }, minus, qtyVal, plus)),
       h("p", { id: "pdErr", class: "form-error", role: "alert", hidden: true }),
@@ -214,7 +221,7 @@
     $("#cartEmpty").hidden = !empty; $("#cartSummary").hidden = empty;
     list.textContent = "";
     lines.forEach(function (l) {
-      var opts = [l.size && "Taille " + l.size, l.color].filter(Boolean).join(" · ");
+      var opts = [l.color].filter(Boolean).join(" · ");
       var minus = h("button", { type: "button", class: "q-btn", "data-act": "minus", "data-key": l.key, "aria-label": "Diminuer la quantité de " + l.product.name, text: "−" });
       var plus = h("button", { type: "button", class: "q-btn", "data-act": "plus", "data-key": l.key, "aria-label": "Augmenter la quantité de " + l.product.name, disabled: l.qty >= cart.maxQty, text: "+" });
       var del = h("button", { type: "button", class: "link-btn", "data-act": "del", "data-key": l.key, "aria-label": "Supprimer " + l.product.name + (opts ? " (" + opts + ")" : "") }, "Supprimer");
@@ -269,11 +276,61 @@
     ev.preventDefault();
     var f = ev.target, phone = f.phone.value.trim(), err = $("#phoneErr");
     if (!cart.lines().length) return;
+    if (!phone) {
+      err.textContent = "Renseigne ton numéro de téléphone pour que nous puissions confirmer la commande."; err.hidden = false; f.phone.focus(); return;
+    }
     if (!WA.isValidPhone(phone)) {
-      err.textContent = "Numéro invalide : saisis entre 8 et 15 chiffres (ex. 77 123 45 67) ou laisse vide."; err.hidden = false; f.phone.focus(); return;
+      err.textContent = "Numéro invalide : saisis entre 8 et 15 chiffres (ex. 77 123 45 67)."; err.hidden = false; f.phone.focus(); return;
     }
     launchWhatsApp(cart.lines(), { name: f.name.value.trim(), phone: phone, zone: f.zone.value.trim(), notes: f.notes.value.trim() }, "cartDialog");
   });
+
+  /* ---------- demande impression urgente ---------- */
+  var printForm = $("#printRequestForm");
+  function printErr(name, msg) {
+    var e = $("#err-" + name), field = printForm.elements[name];
+    if (e) { e.textContent = msg || ""; e.hidden = !msg; }
+    if (field) { field.setAttribute("aria-invalid", msg ? "true" : "false"); field.closest(".pf").classList.toggle("invalid", !!msg); }
+  }
+  function printValidate(f) {
+    var errs = {}, v = function (n) { return String(f.elements[n].value || "").trim(); };
+    if (v("name").length < 2) errs.name = "Indique ton nom complet.";
+    if (!v("phone")) errs.phone = "Indique ton numéro de téléphone.";
+    else if (!WA.isValidPhone(v("phone"))) errs.phone = "Numéro invalide : saisis entre 8 et 15 chiffres (ex. 77 123 45 67).";
+    if (!v("type")) errs.type = "Choisis un type d’impression.";
+    if (!v("support")) errs.support = "Précise le support (T-shirt, flyer, bâche…).";
+    var q = Number(v("quantity"));
+    if (!v("quantity") || !isFinite(q) || q < 1 || Math.floor(q) !== q) errs.quantity = "Indique une quantité (nombre entier, 1 minimum).";
+    if (v("description").length < 5) errs.description = "Décris ton besoin en quelques mots (dimensions, délai, détails).";
+    return errs;
+  }
+  if (printForm) {
+    ["name", "phone", "type", "support", "quantity", "description"].forEach(function (n) {
+      printForm.elements[n].addEventListener("input", function () { printErr(n, ""); });
+      printForm.elements[n].addEventListener("change", function () { printErr(n, ""); });
+    });
+    printForm.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var f = ev.target, errs = printValidate(f), order = ["name", "phone", "type", "support", "quantity", "description"], first = null;
+      order.forEach(function (n) { printErr(n, errs[n] || ""); if (errs[n] && !first) first = n; });
+      $("#printStatus").hidden = true;
+      if (first) { f.elements[first].focus(); return; }
+      var message = ["Bonjour BOUKI, je souhaite faire une demande d’impression urgente :", "",
+        "Nom : " + f.name.value.trim(), "Téléphone : " + f.phone.value.trim(),
+        "Type d’impression : " + f.type.value, "Support : " + f.support.value.trim(),
+        "Quantité : " + Number(f.quantity.value),
+        "Design déjà disponible : " + (f.design.checked ? "Oui" : "Non"),
+        "Description : " + f.description.value.trim(), "",
+        "Merci de me confirmer la faisabilité, le délai et le devis."].join("\n");
+      var url = waLink(message), opened = null;
+      try { opened = window.open(url, "_blank"); if (opened) opened.opener = null; } catch (e) { opened = null; }
+      $("#printOpen").setAttribute("href", url);
+      $("#printStatusText").textContent = opened
+        ? "WhatsApp s’est ouvert avec ta demande. Elle n’est PAS encore envoyée : vérifie le message puis appuie sur « Envoyer » dans WhatsApp."
+        : "WhatsApp ne s’est pas ouvert automatiquement. Utilise le bouton « Ouvrir WhatsApp » ci-dessous. Ta demande n’est PAS encore envoyée.";
+      $("#printStatus").hidden = false;
+    });
+  }
 
   /* ---------- infos ---------- */
   function renderInfo() {

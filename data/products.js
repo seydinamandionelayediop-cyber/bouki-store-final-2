@@ -8,14 +8,13 @@
    • images     : une ou plusieurs photos. Chemins relatifs à la racine du site.
                   Les JPG actuels sont des visuels conceptuels générés ; remplace-les
                   par tes photos réelles avant le lancement public.
-   • sizes      : liste de tailles à choisir. [] = pas de choix de taille.
+   • sizes      : toujours [] — BOUKI ne demande plus de taille sur le site.
    • colors     : liste { name, hex }. Une seule couleur = sélectionnée d'office.
    • status     : "available" (en stock) | "soldout" (épuisé) | "soon" (bientôt)
    • badge      : "new" | "limited" | "bestseller" | null
    • alt        : texte alternatif des images (accessibilité).
    ========================================================================== */
 (function () {
-  var APPAREL = ["XS", "S", "M", "L", "XL", "XXL"];
   window.PRODUCTS = [
     {
       id: "01", slug: "bouki-core", name: "BOUKI CORE",
@@ -23,7 +22,7 @@
       price: 12000, category: "T-shirt",
       images: ["assets/products/bouki-01.jpg"],
       alt: "T-shirt noir BOUKI Core avec petit emblème hyène couronnée sur fond crème",
-      sizes: APPAREL, colors: [{ name: "Noir", hex: "#171717" }],
+      sizes: [], colors: [{ name: "Noir", hex: "#171717" }],
       status: "available", badge: "bestseller"
     },
     {
@@ -32,7 +31,7 @@
       price: 12000, category: "T-shirt graphique",
       images: ["assets/products/bouki-02.jpg"],
       alt: "T-shirt écru BOUKI avec graphisme noir et jaune de la hyène couronnée",
-      sizes: APPAREL, colors: [{ name: "Crème", hex: "#F5F0E6" }],
+      sizes: [], colors: [{ name: "Crème", hex: "#F5F0E6" }],
       status: "available", badge: "new"
     },
     {
@@ -41,7 +40,7 @@
       price: 12000, category: "T-shirt graphique",
       images: ["assets/products/bouki-03.jpg"],
       alt: "T-shirt noir avec graphisme urbain jaune et crème inspiré de Dakar",
-      sizes: APPAREL, colors: [{ name: "Noir", hex: "#171717" }],
+      sizes: [], colors: [{ name: "Noir", hex: "#171717" }],
       status: "available", badge: "limited"
     },
     {
@@ -50,7 +49,7 @@
       price: 18000, category: "Hoodie",
       images: ["assets/products/bouki-04.jpg"],
       alt: "Sweat à capuche noir BOUKI avec grand emblème jaune et crème",
-      sizes: APPAREL, colors: [{ name: "Noir", hex: "#171717" }],
+      sizes: [], colors: [{ name: "Noir", hex: "#171717" }],
       status: "available", badge: "limited"
     },
     {

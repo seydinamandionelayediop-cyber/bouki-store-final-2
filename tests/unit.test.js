@@ -30,20 +30,20 @@ test("format prix", () => {
   assert.equal(WA.formatPrice(1250000), "1 250 000 FCFA");
 });
 
-test("taille obligatoire pour un vêtement, pas pour un accessoire", () => {
+test("aucune taille requise pour les vêtements ou accessoires", () => {
   const c = createCart(PRODUCTS);
-  assert.equal(c.add("01", { color: "Noir" }, 1).ok, false);
-  assert.equal(c.count(), 0);
+  assert.equal(c.add("01", { color: "Noir" }, 1).ok, true);
+  assert.equal(c.count(), 1);
   assert.equal(c.add("01", { size: "M", color: "Noir" }, 1).ok, true);
   assert.equal(c.add("05", { color: "Noir" }, 1).ok, true);
-  assert.equal(c.add("01", { size: "ZZ", color: "Noir" }, 1).ok, false);
+  assert.equal(c.add("01", { size: "ZZ", color: "Noir" }, 1).ok, true);
 });
 
-test("variantes = lignes distinctes, même variante = cumul", () => {
+test("la taille est ignorée, même produit/couleur = cumul", () => {
   const c = createCart(PRODUCTS);
   c.add("01", { size: "M", color: "Noir" }, 1); c.add("01", { size: "L", color: "Noir" }, 1); c.add("01", { size: "M", color: "Noir" }, 2);
-  assert.equal(c.lines().length, 2); assert.equal(c.count(), 4);
-  assert.equal(c.lines().find(l => l.size === "M").qty, 3);
+  assert.equal(c.lines().length, 1); assert.equal(c.count(), 4);
+  assert.equal(c.lines()[0].qty, 4);
 });
 
 test("quantités : plafond, plancher, suppression", () => {
@@ -73,7 +73,7 @@ test("persistance + rejet des lignes périmées/corrompues", () => {
   assert.equal(b.count(), 2); assert.equal(b.subtotal(), 24000);
   s.setItem("bouki-cart-v1", JSON.stringify([{ id: "99", qty: 3 }, { id: "01", size: "M", color: "Noir", qty: -5 }, { id: "01", size: "??", color: "Noir", qty: 1 }]));
   const c = createCart(PRODUCTS, { storage: s });
-  assert.equal(c.lines().length, 1); assert.equal(c.count(), 1);
+  assert.equal(c.lines().length, 1); assert.equal(c.count(), 2);
   s.setItem("bouki-cart-v1", "{pas du json");
   assert.equal(createCart(PRODUCTS, { storage: s }).count(), 0);
 });
@@ -97,7 +97,7 @@ test("message WhatsApp : contenu, totaux, accents, encodage", () => {
     customer: { name: "Awa Diop", phone: "77 123 45 67", zone: "Yoff, Dakar", notes: "Livraison après 18h — merci !" } });
   assert.match(msg, /^Bonjour BOUKI, je souhaite commander :/);
   assert.match(msg, /Référence : BK-TEST-0001/);
-  assert.match(msg, /1\. Produit : BOUKI CORE\n   Taille : M\n   Couleur : Noir\n   Quantité : 2\n   Prix unitaire : 12 000 FCFA/);
+  assert.match(msg, /1\. Produit : BOUKI CORE\n   Couleur : Noir\n   Quantité : 2\n   Prix unitaire : 12 000 FCFA/);
   assert.match(msg, /2\. Produit : BOUKI EVERYDAY\n   Couleur : Crème\n   Quantité : 1\n   Prix unitaire : 7 000 FCFA/);
   assert.match(msg, /Sous-total : 31 000 FCFA/);
   assert.match(msg, /Livraison : frais à confirmer/);

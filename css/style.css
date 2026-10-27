@@ -356,3 +356,146 @@ dialog::backdrop { background: rgba(16, 16, 16, .6); backdrop-filter: blur(2px);
   .js .reveal { opacity: 1; transform: none; }
   .ticker-track { transform: none; }
 }
+
+/* BOUKI — formulaire Impression urgente */
+.omni-block{margin-top:clamp(32px,6vw,80px);padding:clamp(24px,5vw,56px);border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.18)}.omni-block h3{font-size:clamp(1.8rem,5vw,3.6rem);line-height:1;margin:.5em 0}.omni-block h3 em{color:var(--gold);font-style:normal}.omni-block>p:not(.eyebrow){max-width:70ch;line-height:1.7}.omni-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}.omni-points article{border:1px solid rgba(255,255,255,.2);padding:20px}.omni-points article>b{color:var(--gold);font-size:.72rem;letter-spacing:.1em}.omni-points h4{font-size:1.25rem;margin:.8em 0 .3em}.omni-points p{line-height:1.6;margin:0}
+@media(max-width:720px){.omni-points{grid-template-columns:1fr}}
+
+/* Parcours du fondateur */
+.founder-section{background:var(--cream);color:var(--ink);padding:clamp(52px,8vw,104px) var(--pad);border-block:1px solid rgba(16,16,16,.14)}
+.founder-kicker{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:18px;margin-bottom:clamp(28px,5vw,60px)}
+.founder-kicker .eyebrow{margin:0;color:var(--muted)}
+.founder-stamp{font:700 11px/1 var(--font-body);letter-spacing:.16em;color:var(--gold-ink);border:1px solid var(--gold-ink);padding:10px 12px}
+.founder-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,90px);align-items:start}
+.founder-heading h2{font:700 clamp(36px,6.4vw,82px)/.95 var(--font-display);letter-spacing:-.055em;margin:0}
+.founder-heading h2 em{font-style:normal;color:var(--gold-ink)}
+.founder-role{margin-top:24px;font:700 11px/1.4 var(--font-body);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.founder-story{max-width:680px}
+.founder-story p{font-size:15px;line-height:1.8;color:#49463f;margin:0 0 18px}
+.founder-story .founder-lead{font:700 clamp(20px,2.6vw,30px)/1.35 var(--font-display);color:var(--ink);letter-spacing:-.025em}
+.founder-values{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+.founder-values span{border:1px solid rgba(16,16,16,.28);padding:9px 11px;font:700 10px/1 var(--font-body);letter-spacing:.1em}
+.founder-story .founder-signature{margin-top:32px;padding-top:18px;border-top:1px solid rgba(16,16,16,.25);font:700 14px/1.5 var(--font-display);color:var(--ink)}
+.founder-signature strong{color:var(--gold-ink);letter-spacing:.06em}
+@media(max-width:700px){.founder-content{grid-template-columns:1fr;gap:24px}.founder-heading h2{font-size:clamp(38px,11vw,64px)}.founder-story p{font-size:14px}.founder-kicker{align-items:flex-start}}
+
+
+/* Services enrichis + parcours CEO : présentation éditoriale */
+.services-grid-rich{grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.services-grid-rich .service-card{min-width:0;padding:clamp(16px,2vw,28px);border-left:1px solid rgba(255,255,255,.16)}
+.services-grid-rich .service-card:first-child{border-left:0}
+.services-grid-rich .service-card h3{font-size:clamp(18px,2vw,25px);line-height:1.12}
+.services-grid-rich .service-card p{font-size:14px;line-height:1.65}
+.services-grid-rich .service-card ul{font-size:12px;line-height:1.8}
+.founder-section-dark{background:#101010;color:#f5f0e6;border-color:rgba(255,255,255,.15)}
+.founder-section-dark .founder-kicker{border-color:rgba(255,255,255,.2)}
+.founder-section-dark .founder-kicker .eyebrow{color:#c9c2b5}
+.founder-section-dark .founder-stamp{color:var(--gold);border-color:var(--gold)}
+.founder-content-journey{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(28px,5vw,72px)}
+.founder-section-dark .founder-heading h2{font-size:clamp(42px,6.3vw,82px);color:#f5f0e6}
+.founder-section-dark .founder-heading h2 em{color:var(--gold)}
+.founder-section-dark .founder-role{color:#c9c2b5}
+.founder-eyebrow,.founder-timeline-title{font:700 10px/1.4 var(--font-body);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.founder-manifesto{margin-top:26px;max-width:68ch}
+.founder-section-dark .founder-story p{color:#d0cbc2}
+.founder-section-dark .founder-story .founder-timeline-title{color:var(--gold)}
+.founder-timeline{position:relative;display:grid;gap:0}
+.founder-timeline:before{content:"";position:absolute;left:19px;top:20px;bottom:24px;width:1px;background:rgba(242,178,22,.5)}
+.founder-timeline article{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;padding:0 0 24px}
+.timeline-icon{position:relative;z-index:1;display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--gold);border-radius:50%;background:#101010;color:var(--gold);font-size:17px}
+.founder-timeline article b{font:700 9px/1.5 var(--font-body);letter-spacing:.12em;color:var(--gold)}
+.founder-timeline article h3{font:700 18px/1.25 var(--font-display);margin:4px 0 6px;color:#f5f0e6}
+.founder-timeline article p{font-size:12px;line-height:1.65;margin:0;color:#c9c2b5}
+.founder-section-dark .founder-values span{border-color:rgba(255,255,255,.24);color:#f5f0e6}
+.founder-section-dark .founder-story .founder-signature{border-color:rgba(255,255,255,.2);color:#f5f0e6}
+.founder-section-dark .founder-signature strong{color:var(--gold)}
+@media(max-width:1100px){.services-grid-rich{grid-template-columns:repeat(2,minmax(0,1fr))}.services-grid-rich .service-card:nth-child(odd){border-left:0}.services-grid-rich .service-card{border-top:1px solid rgba(255,255,255,.16)}.services-grid-rich .service-card:first-child,.services-grid-rich .service-card:nth-child(2){border-top:0}}
+@media(max-width:700px){.services-grid-rich{grid-template-columns:1fr}.services-grid-rich .service-card{border-left:0!important;border-top:1px solid rgba(255,255,255,.16)!important;padding:24px 0}.services-grid-rich .service-card:first-child{border-top:0!important}.founder-content-journey{grid-template-columns:1fr}.founder-section-dark .founder-heading h2{font-size:clamp(42px,12vw,68px)}.founder-timeline article p{font-size:13px}}
+
+/* Impression urgente : visuel éditorial et discours du fondateur */
+.founder-quote{position:relative;margin:28px 0 0;padding:22px 22px 20px 26px;border-left:2px solid var(--gold);background:rgba(255,255,255,.045)}
+.founder-quote>span{position:absolute;top:2px;left:10px;font:700 42px/1 Georgia,serif;color:var(--gold)}
+.founder-quote p{margin:0 0 14px!important;padding-left:18px;font:italic 16px/1.7 var(--font-display)!important;color:#f5f0e6!important}
+.founder-quote cite{display:block;padding-left:18px;font:700 10px/1.4 var(--font-body);letter-spacing:.14em;color:var(--gold);font-style:normal}
+@media(max-width:720px){.founder-quote{padding:18px 14px}.founder-quote p{font-size:14px!important}}
+
+/* ==========================================================================
+   Univers BOUKI (5 cartes)
+   ========================================================================== */
+.services-heading h2 { font-size: clamp(30px, 4.6vw, 62px); line-height: 1; letter-spacing: -.045em; }
+.universe-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.universe-card { grid-column: span 2; display: flex; flex-direction: column; min-width: 0; padding: clamp(20px, 2.4vw, 32px); background: var(--white); border: 1px solid var(--ink); transition: transform .2s ease, box-shadow .2s ease; }
+.universe-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+.universe-featured { background: var(--ink); color: var(--cream); }
+.universe-card:nth-child(4), .universe-card:nth-child(5) { grid-column: span 3; }
+.universe-no { font: 700 clamp(40px, 5vw, 64px)/1 var(--font-display); letter-spacing: -.06em; color: var(--gold-ink); margin-bottom: 14px; }
+.universe-featured .universe-no { color: var(--gold); }
+.universe-card h3 { font: 700 clamp(20px, 2.2vw, 28px)/1.1 var(--font-display); letter-spacing: -.03em; margin-bottom: 12px; }
+.universe-card p { font-size: 15px; line-height: 1.65; color: var(--muted); }
+.universe-featured p { color: #d0cbc2; }
+.universe-card ul { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.universe-card li { border: 1px solid currentColor; padding: 5px 9px; font: 700 10px/1.3 var(--font-body); letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+.universe-cta { margin-top: auto; align-self: flex-start; font: 700 12px/1.3 var(--font-body); letter-spacing: .12em; text-transform: uppercase; border-bottom: 2px solid var(--gold); padding-bottom: 4px; }
+.universe-cta:hover { color: var(--gold-ink); }
+.universe-featured .universe-cta:hover { color: var(--gold); }
+@media (max-width: 1000px) { .universe-card, .universe-card:nth-child(4), .universe-card:nth-child(5) { grid-column: span 3; } .universe-card:nth-child(5) { grid-column: 1 / -1; } }
+@media (max-width: 640px) { .universe-grid { grid-template-columns: 1fr; } .universe-card, .universe-card:nth-child(n) { grid-column: 1; } }
+
+/* ==========================================================================
+   Impression urgente
+   ========================================================================== */
+.print-section { background: var(--ink); color: var(--cream); padding: clamp(58px, 8vw, 108px) var(--pad); }
+.print-wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.print-intro { min-width: 0; }
+.print-intro h2 { font-size: clamp(44px, 7.5vw, 104px); line-height: .9; margin-bottom: 20px; }
+.print-intro h2 em { color: var(--gold); }
+.print-lead { max-width: 52ch; font-size: 17px; line-height: 1.7; color: #d6d0c2; }
+.print-visual { margin: 28px 0 0; background: #171512; border: 1px solid rgba(255,255,255,.2); overflow: hidden; }
+.print-visual img { width: 100%; height: auto; aspect-ratio: 1112 / 916; object-fit: cover; }
+.print-visual figcaption { padding: 11px 14px; font-size: 12px; letter-spacing: .04em; color: #c9c2b5; }
+.print-benefits { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.print-benefits li { border-top: 2px solid var(--gold); padding-top: 10px; }
+.print-benefits b { display: block; font: 700 15px/1.2 var(--font-display); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.print-benefits span { font-size: 13px; line-height: 1.5; color: #c9c2b5; }
+.print-form { position: sticky; top: 90px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: clamp(20px, 3vw, 36px); background: var(--cream); color: var(--ink); border: 2px solid var(--gold); }
+.print-form .form-title { grid-column: 1 / -1; margin: 0; font: 700 22px/1.1 var(--font-display); letter-spacing: -.02em; }
+.pf { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.pf-wide, .print-form > button, .print-status { grid-column: 1 / -1; }
+.pf label { font: 700 11px/1.3 var(--font-body); letter-spacing: .1em; text-transform: uppercase; }
+.pf input:not([type=checkbox]), .pf select, .pf textarea { width: 100%; min-width: 0; padding: 12px; border: 1px solid rgba(0,0,0,.35); background: #fff; color: var(--ink); border-radius: 0; }
+.pf textarea { resize: vertical; }
+.pf-check { justify-content: flex-end; }
+.pf .print-check { display: flex; align-items: center; gap: 10px; text-transform: none; letter-spacing: 0; font-size: 14px; font-weight: 500; padding: 12px 0; }
+.pf .print-check input { width: 20px; height: 20px; accent-color: var(--ink); }
+.pf.invalid input:not([type=checkbox]), .pf.invalid select, .pf.invalid textarea { border: 2px solid #b3261e; }
+.field-err { margin: 0; font-size: 13px; font-weight: 700; color: #b3261e; }
+.print-form > button.btn-gold { background: var(--ink); color: var(--gold); }
+.print-form > button.btn-gold:hover { background: var(--gold); color: var(--ink); }
+.print-status { display: grid; gap: 10px; padding: 14px; background: #fff; border-left: 4px solid var(--gold); font-size: 14px; line-height: 1.6; }
+.print-status p { margin: 0; }
+.print-status .btn { justify-self: start; }
+@media (max-width: 900px) { .print-wrap { grid-template-columns: 1fr; } .print-form { position: static; } }
+@media (max-width: 520px) { .print-form { grid-template-columns: 1fr; } .print-benefits { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   Parcours du fondateur
+   ========================================================================== */
+.founder-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 72px); align-items: end; margin-bottom: clamp(36px, 6vw, 72px); }
+.founder-hero .founder-heading h2 { font-size: clamp(38px, 6vw, 84px); line-height: .95; }
+.founder-hero .founder-heading h2 em { display: block; margin-top: .12em; }
+.founder-sub { margin: 20px 0 0; font: 700 clamp(18px, 2.2vw, 26px)/1.2 var(--font-display); letter-spacing: -.02em; color: var(--gold); }
+.founder-visual { margin: 0; border: 1px solid rgba(255,255,255,.2); background: #171512; }
+.founder-visual img { width: 100%; height: auto; aspect-ratio: 1216 / 732; object-fit: cover; }
+.founder-visual figcaption { padding: 10px 14px; font-size: 12px; letter-spacing: .04em; color: #c9c2b5; }
+.founder-speech { min-width: 0; max-width: 62ch; }
+.founder-speech p { font-size: 16px; line-height: 1.8; color: #d0cbc2; margin: 0 0 18px; }
+.founder-speech .speech-lead { font: 700 clamp(20px, 2.4vw, 28px)/1.35 var(--font-display); letter-spacing: -.025em; color: var(--cream); }
+.founder-speech .founder-quote { margin-top: 32px; }
+.founder-speech .founder-quote p { margin: 0 !important; }
+.founder-sign { margin: 22px 0 0 !important; font: italic 700 clamp(34px, 5vw, 56px)/1 Georgia, "Times New Roman", serif !important; letter-spacing: .01em; color: var(--gold) !important; }
+.founder-timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.founder-timeline li { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 0 0 24px; }
+.founder-timeline li p { font-size: 13px !important; line-height: 1.65; margin: 0 !important; color: #c9c2b5; }
+.founder-timeline li b { font: 700 9px/1.5 var(--font-body); letter-spacing: .12em; color: var(--gold); }
+.founder-timeline li h3 { font: 700 18px/1.25 var(--font-display); margin: 4px 0 6px; color: var(--cream); }
+@media (max-width: 900px) { .founder-hero { grid-template-columns: 1fr; } }
