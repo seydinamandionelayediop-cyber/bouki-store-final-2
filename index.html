@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile-first.css">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -51,11 +52,7 @@
       <div class="hero-copy">
         <p class="eyebrow"><span class="pulse" aria-hidden="true"></span> Streetwear sénégalais · <span data-drop-name>DROP 001</span></p>
         <h1 id="heroTitle">TECH<br><em>DOFF.</em></h1>
-<<<<<<< HEAD
         <p class="lead">Née à Dakar, BOUKI mêle streetwear, culture sénégalaise et créativité sans frontières. Une hyène, une couronne, un état d’esprit : des pièces qui racontent une histoire et des idées qui prennent vie entre le réel et le digital. Du vêtement à l’expérience interactive, on crée ce qui sort du lot. <strong>TECH DOFF.</strong></p>
-=======
-        <p class="lead">Streetwear, idées audacieuses et expériences numériques. BOUKI transforme les marques et les projets en identités fortes, expériences interactives et campagnes qui marquent. <strong>TECH DOFF.</strong></p>
->>>>>>> 30c411fbfd1f9b3856b00a7125955ee0c9736fda
         <a class="btn btn-dark" href="#collection">Découvrir la collection <span aria-hidden="true">↘</span></a>
         <ul class="hero-facts" aria-label="L'essentiel">
           <li>7 pièces</li><li>Esprit Dakar</li><li>Commande sur WhatsApp</li>
@@ -267,6 +264,13 @@
     <small>© <span id="year">2026</span> BOUKI STUDIO. Tous droits réservés.</small>
   </footer>
 
+  <nav class="tabbar" aria-label="Actions rapides">
+    <a href="#collection" data-sec><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7l2-3h12l2 3v13H4zM4 7h16M9 11a3 3 0 006 0"/></svg>Boutique</a>
+    <a href="#impression" data-sec><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg>Impression</a>
+    <button type="button" id="tabCart" aria-label="Ouvrir le panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8a3 3 0 016 0"/></svg>Panier<b id="tabCount" class="tab-count" aria-hidden="true">0</b></button>
+    <a class="tab-wa" data-wa="tabbar" href="#" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><span class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4.2A8 8 0 118 19z"/></svg></span><em>WhatsApp</em></a>
+  </nav>
+
   <!-- FICHE PRODUIT -->
   <dialog id="productDialog" class="modal" aria-labelledby="pdName">
     <div class="modal-body" id="productBody"></div>
@@ -332,5 +336,6 @@
   <script src="js/whatsapp.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/motion.js"></script>
 </body>
 </html>

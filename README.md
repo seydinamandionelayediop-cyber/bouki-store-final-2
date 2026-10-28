@@ -175,3 +175,9 @@ bouki-store-final/
 - Le bouton produit « CHOISIR D'AUTRES ARTICLES » ajoute la pièce au panier puis ramène à la collection. Plus aucune taille n'est demandée ; les anciens paniers contenant une taille restent commandables.
 - **À renseigner** dans `config/store.js` : `communityWhatsAppGroup` (lien chat.whatsapp.com — sinon le bouton ouvre une conversation WhatsApp), `contact` (Instagram, TikTok, e-mail), `pricesConfirmed`, `deliveryFee`, textes « Retours » et « Conditions de vente ».
 - Tests : `npm test` (unitaires) et `node tests/e2e.cjs` (navigateur, 4 tailles d'écran).
+
+
+## Version mobile first + animations
+- `css/mobile-first.css` et `js/motion.js` s'ajoutent à la version production (aucun fichier existant supprimé ; pour revenir en arrière, retire les deux lignes correspondantes dans `index.html`).
+- Mobile : barre d'actions fixe en bas (Boutique, Impression, Panier avec compteur, WhatsApp), menu plein écran, produits en carrousel à balayer, cartes « Univers » qui s'empilent au scroll, en-tête qui se masque en descendant.
+- Animations : entrée orchestrée du hero, apparitions au scroll avec léger flou, barre de progression de lecture, zoom lent des visuels, parallaxe douce. Tout est désactivé si l'appareil demande « réduire les animations ».

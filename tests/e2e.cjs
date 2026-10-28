@@ -16,6 +16,7 @@ async function t(name, fn) { try { await fn(); pass++; console.log("  ✓", name
 const eq = (a, b, m) => { if (a !== b) throw new Error((m || "") + " attendu " + JSON.stringify(b) + " reçu " + JSON.stringify(a)); };
 const ok = (c, m) => { if (!c) throw new Error(m || "assertion"); };
 const NUM = "221787560327";
+let CART = "#cartBtn";
 
 (async () => {
   await new Promise(r => server.listen(0, r));
@@ -25,7 +26,7 @@ const NUM = "221787560327";
 
   const SIZES = [["mobile-360", 360, 800], ["mobile-390", 390, 844], ["tablette-768", 768, 1024], ["desktop-1440", 1440, 900]];
   for (const [label, w, hgt] of SIZES) {
-    console.log(`\n▸ ${label} (${w}×${hgt})`);
+    console.log(`\n▸ ${label} (${w}×${hgt})`); CART = w < 900 ? "#tabCart" : "#cartBtn";
     const ctx = await browser.newContext({ viewport: { width: w, height: hgt }, hasTouch: w < 800, isMobile: w < 800, permissions: ["clipboard-read", "clipboard-write"] });
     const page = await ctx.newPage();
     const errors = [], badReq = [];
@@ -60,6 +61,22 @@ const NUM = "221787560327";
       const broken = await page.evaluate(() => [...document.images].filter(i => !i.naturalWidth).map(i => i.src)); eq(broken.length, 0, broken.join(","));
     });
     await t("pas de débordement horizontal", async () => { const o = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth); ok(o <= 0, "débordement " + o + "px"); });
+    await t("mobile first : barre du bas visible < 900px, absente au-dessus", async () => {
+      eq(await page.locator(".tabbar").isVisible(), w < 900);
+    });
+    await t("animations : classe motion active, hero visible après l'entrée", async () => {
+      ok(await page.evaluate(() => document.documentElement.classList.contains("motion"))); await page.waitForTimeout(1500);
+      eq(await page.evaluate(() => getComputedStyle(document.querySelector(".hero-copy .lead")).opacity), "1");
+    });
+    await t("carrousel produits : balayage horizontal sur mobile, grille sur grand écran", async () => {
+      const d = await page.evaluate(() => { const g = document.querySelector("#productGrid"); return [getComputedStyle(g).display, g.scrollWidth > g.clientWidth + 10]; });
+      if (w < 700) { eq(d[0], "flex"); ok(d[1], "pas de défilement horizontal"); } else eq(d[0], "grid");
+    });
+    await t("apparition au scroll : les sections deviennent visibles", async () => {
+      await page.locator("#parcours").scrollIntoViewIfNeeded(); await page.evaluate(() => window.scrollBy(0, 300)); await page.waitForTimeout(1200);
+      ok(await page.evaluate(() => document.querySelectorAll("[data-anim].is-in").length) > 3);
+      await page.evaluate(() => window.scrollTo(0, 0));
+    });
     await t("liens d'ancre : cibles existantes", async () => {
       const bad = await page.evaluate(() => [...document.querySelectorAll("a[href^='#']")].map(a => a.getAttribute("href")).filter(h => h.length > 1 && !h.startsWith("#produit/") && !document.querySelector(h))); eq(bad.length, 0, bad.join(","));
     });
@@ -113,7 +130,7 @@ const NUM = "221787560327";
       eq(await page.locator("#cartCount").textContent(), "4");
     });
     await t("panier : totaux, +/−/suppression", async () => {
-      await page.click("#cartBtn"); await page.waitForSelector("#cartDialog[open]");
+      await page.click(CART); await page.waitForSelector("#cartDialog[open]");
       eq(await page.locator(".cart-line").count(), 3); eq(await page.locator("#cartSubtotal").textContent(), "49 000 FCFA"); // 24000+18000+7000
       await page.locator(".cart-line", { hasText: "BOUKI CORE" }).locator("[data-act=minus]").click(); eq(await page.locator("#cartSubtotal").textContent(), "37 000 FCFA");
       await page.locator(".cart-line", { hasText: "HORS DU MOULE. MUG" }).locator("[data-act=del]").click(); eq(await page.locator(".cart-line").count(), 2); eq(await page.locator("#cartSubtotal").textContent(), "30 000 FCFA");
@@ -121,7 +138,7 @@ const NUM = "221787560327";
     await t("ancien panier avec taille : toujours commandable", async () => {
       await page.keyboard.press("Escape");
       await page.evaluate(() => localStorage.setItem("bouki-cart-v1", JSON.stringify([{ id: "01", size: "XXL", color: "Noir", qty: 1 }, { id: "04", size: "??", color: "Noir", qty: 1 }]))); await page.reload();
-      eq(await page.locator("#cartCount").textContent(), "2"); await page.click("#cartBtn");
+      eq(await page.locator("#cartCount").textContent(), "2"); await page.click(CART);
       ok(!/Taille/.test(await page.locator("#cartLines").innerText()));
     });
     await t("commande : téléphone obligatoire", async () => {
@@ -139,7 +156,7 @@ const NUM = "221787560327";
       ok(/PAS encore envoyé/.test(await page.textContent("#recapStatus")));
     });
     await t("vider le panier", async () => {
-      await page.keyboard.press("Escape"); await page.click("#cartBtn"); await page.click("#clearCart"); ok(await page.locator("#cartEmpty").isVisible()); eq(await page.locator("#cartCount").textContent(), "0");
+      await page.keyboard.press("Escape"); await page.click(CART); await page.click("#clearCart"); ok(await page.locator("#cartEmpty").isVisible()); eq(await page.locator("#cartCount").textContent(), "0");
     });
     await t("infos enrichies", async () => { await page.keyboard.press("Escape"); ok(await page.locator(".info-item").count() >= 8); });
     await t("page 404", async () => { const r = await page.goto(base + "/inexistant"); eq(r.status(), 404); });
