@@ -2,7 +2,7 @@
    BOUKI — LES 7 PRODUITS DU DROP  (fichier à modifier à chaque nouveau drop)
    --------------------------------------------------------------------------
    • Exactement 7 emplacements. Pour changer de drop : modifie, ne supprime pas.
-   • price      : en FCFA, nombre entier sans espace (12000).  ⚠ PRIX D'EXEMPLE
+   • price      : en FCFA, nombre entier sans espace (11000).  ⚠ PRIX D'EXEMPLE
                   à remplacer avant publication, puis config/store.js →
                   pricesConfirmed: true.
    • images     : une ou plusieurs photos. Chemins relatifs à la racine du site.
